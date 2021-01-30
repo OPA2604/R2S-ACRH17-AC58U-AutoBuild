@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: AC58U
+name: ASUS-AC58U
 
 on:
   repository_dispatch:
@@ -28,6 +28,7 @@ env:
   CONFIG_FILE: config/ac58u/ac58u.config
   DIY_P1_SH: config/ac58u/diy-part1.sh
   DIY_P2_SH: config/ac58u/diy-part2.sh
+  SSH_ACTIONS: true
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -160,7 +161,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M"-AC58U)"
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M"-ASUS-AC58U)"
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
